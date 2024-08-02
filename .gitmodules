@@ -1,0 +1,12 @@
+[submodule "repos/poky"]
+	path = repos/poky
+	url = git://git.yoctoproject.org/poky
+[submodule "repos/meta-openembedded"]
+	path = repos/meta-openembedded
+	url = git://git.openembedded.org/meta-openembedded
+[submodule "repos/meta-zukimo"]
+	path = repos/meta-zukimo
+	url = ../zukimo_bsp-meta-zukimo.git
+[submodule "repos/meta-arm"]
+	path = repos/meta-arm
+	url = git://git.yoctoproject.org/meta-arm

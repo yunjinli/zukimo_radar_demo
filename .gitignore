@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+*.sif
+*~
+build*/
+/images/
