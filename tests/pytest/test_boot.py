@@ -61,15 +61,7 @@ def bmc_reset():
         sh = Shell(uart, prompt_bmc)
         uart_cmd(sh, "misc version")
 
-        # If the DUT is currently running Linux, we must reset twice. Reason: unknown.
-        uart_cmd(sh, "bc_gpio systemboot 0")
-        time.sleep(2)
-        uart_cmd(sh, "bc_gpio systemboot 1")
-        time.sleep(2)
-
-        uart_cmd(sh, "bc_gpio systemboot 0")
-        time.sleep(2)
-        uart_cmd(sh, "bc_gpio systemboot 1")
+        uart_cmd(sh, "bc_gpio alc_reset 0 0")
         time.sleep(2)
 
 
