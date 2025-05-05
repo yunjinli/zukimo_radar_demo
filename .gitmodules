@@ -10,3 +10,5 @@
 [submodule "repos/meta-arm"]
 	path = repos/meta-arm
 	url = git://git.yoctoproject.org/meta-arm
+[submodule "meta-zukimo"]
+	url = https://github.com/yunjinli/zukimo_bsp-meta-zukimo.git
