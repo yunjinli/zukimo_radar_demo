@@ -1,0 +1,22 @@
+From 580f1b721f953d5b0af58be3d70a9a6a29fa228e Mon Sep 17 00:00:00 2001
+From: Sebastian Knackstedt <sebastian.knackstedt@stud.uni-hannover.de>
+Date: Thu, 20 Nov 2025 19:16:55 +0000
+Subject: [PATCH] Fix wrong pixel format
+
+---
+ linux/mvdu_v4l.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/linux/mvdu_v4l.c b/linux/mvdu_v4l.c
+index 327d04b..fb8de5a 100644
+--- a/linux/mvdu_v4l.c
++++ b/linux/mvdu_v4l.c
+@@ -54,7 +54,7 @@ static struct mvdu_fmt mvdu_formats[] = {
+ 		.idx_mask = BIT(1) | BIT(0),
+ 	},
+ 	{
+-		.fourcc = V4L2_PIX_FMT_ABGR32,
++		.fourcc = V4L2_PIX_FMT_ARGB32,
+ 		.code = MEDIA_BUS_FMT_YUYV8_1X16,
+ 		.desc = "BGRA-8-8-8-8",
+ 		.planes = 1,

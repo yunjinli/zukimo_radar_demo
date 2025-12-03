@@ -1,0 +1,1 @@
+IMAGE_INSTALL:append = " kernel-module-npu python3-pip python3-dev"

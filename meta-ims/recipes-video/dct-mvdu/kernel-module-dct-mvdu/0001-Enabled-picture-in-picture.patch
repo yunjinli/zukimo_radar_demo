@@ -1,0 +1,45 @@
+From c081ff23c973c395bfd7b8a2e2b1e55da9fd6467 Mon Sep 17 00:00:00 2001
+From: Christoph Riggers <christoph.riggers@ims.uni-hannover.de>
+Date: Thu, 25 Sep 2025 14:36:22 +0200
+Subject: [PATCH] Enabled picture-in-picture
+
+---
+ linux/mvdu_core.c | 2 ++
+ linux/mvdu_v4l.c  | 4 ++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/linux/mvdu_core.c b/linux/mvdu_core.c
+index 45776a3..c521aa9 100644
+--- a/linux/mvdu_core.c
++++ b/linux/mvdu_core.c
+@@ -135,6 +135,7 @@ int mvdu_set_reg(struct platform_device *pdev, unsigned int addr,
+ static void mvdu_video_base_update(struct mvdu_data *priv, uintptr_t y_base,
+ 				   uintptr_t c_base)
+ {
++	mvdu_update_display_start_pos(priv->fx_base, &priv->dif);
+ 	mvdu_mi_write(y_base, priv->fx_base + MI_V1_Y_BA_REG);
+ 	mvdu_mi_write(c_base, priv->fx_base + MI_V1_C_BA_REG);
+ 	mvdu_config_mif_video(priv->fx_base, &priv->stream[VID].mif);
+@@ -144,6 +145,7 @@ static void mvdu_video_base_update(struct mvdu_data *priv, uintptr_t y_base,
+ static void mvdu_pip_base_update(struct mvdu_data *priv, uintptr_t y_base,
+ 				 uintptr_t c_base)
+ {
++	mvdu_update_display_start_pos(priv->fx_base, &priv->dif);
+ 	mvdu_mi_write(y_base, priv->fx_base + MI_PIP_IN_Y_BA_REG);
+ 	mvdu_mi_write(c_base, priv->fx_base + MI_PIP_IN_C_BA_REG);
+ 	mvdu_config_mif_pip(priv->fx_base, &priv->stream[PIP].mif);
+diff --git a/linux/mvdu_v4l.c b/linux/mvdu_v4l.c
+index 7c9c160..327d04b 100644
+--- a/linux/mvdu_v4l.c
++++ b/linux/mvdu_v4l.c
+@@ -17,8 +17,8 @@ static unsigned int debug;
+ module_param(debug, uint, 0644);
+ MODULE_PARM_DESC(debug, "debug level");
+ 
+-#define MIN_WIDTH 640
+-#define MIN_HEIGHT 480
++#define MIN_WIDTH 320 // 640
++#define MIN_HEIGHT 240 // 480
+ #define MAX_WIDTH 1920
+ #define MAX_HEIGHT 1200
+ #define ALIGN_W 3
